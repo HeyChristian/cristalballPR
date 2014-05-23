@@ -9,7 +9,9 @@
 #import "cvViewController.h"
 #import "cvCrystalBall.h"
 #import "AudioToolbox/AudioToolbox.h"
+#import <AudioUnit/AudioUnit.h>
 #import <iAd/iAd.h>
+#import "SyncTool.h"
 
 @interface cvViewController ()
 
@@ -29,21 +31,16 @@
     self.crystalBall = [[cvCrystalBall alloc] init];
     
     
-//UIImage *backgroundImage = [UIImage imageNamed:@"background"];
-   // UIImageView *imageView = [[UIImageView alloc] initWithImage:backgroundImage];
-    
-   // [self.view insertSubview:imageView atIndex:0];
+
     
     self.predictLabel.text = nil;
     
     NSMutableArray *animationImages = [[NSMutableArray alloc] init];
-   // NSNumber *i = [[NSNumber alloc] initWithInt:1];
     NSString *imageName = [[NSString alloc] init];
    int i=1;
    while (i < 61){
         
-   //     NSLog(@" i is %d",i);
-        
+      
         if( i < 10){
            imageName = [@"CB0000" stringByAppendingString:[NSString stringWithFormat:@"%i",i]];
         }else{
@@ -53,7 +50,6 @@
      
        [animationImages addObject:[UIImage imageNamed:imageName]];
        i++;
-       NSLog(@" >> %@",imageName);
    }
     
   self.backgroundImageView.animationImages = animationImages;
@@ -70,6 +66,12 @@
     
     ADBannerView *adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, 320, 50)];
     [self.view addSubview:adView];
+    
+   // SyncTool *sync = [[SyncTool alloc] init];
+    //[sync DownloadPhrases];
+    
+    [self.crystalBall fillPredictions];
+    
 }
 
 - (void)didReceiveMemoryWarning

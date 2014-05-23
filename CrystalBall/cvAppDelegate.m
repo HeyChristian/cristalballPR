@@ -7,12 +7,39 @@
 //
 
 #import "cvAppDelegate.h"
+#import <Parse/Parse.h>
+#import "SyncTool.h"
 
 @implementation cvAppDelegate
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+   
+    /*
+    //Registration Push Notifications
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeBadge |
+     UIRemoteNotificationTypeAlert |
+     UIRemoteNotificationTypeSound];
+    */
+    
+    [Parse setApplicationId:@"aLkAwDmQF71fdog3WEEpuW1dZ3QXJuFPWcgsdmRB"
+                  clientKey:@"qLim1zRzLkCvupbgNiE2Kt2lUwSpWHduLVPVY1sh"];
+    
+    
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    
+    
+    
+    
+    SyncTool *tool = [[SyncTool alloc] init];
+    [tool DownloadPhrases];
+    
+     [NSThread sleepForTimeInterval:5.0];
     return YES;
 }
 							
@@ -41,6 +68,26 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:newDeviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *) error
+{
+    NSLog(@"Error:  %@", error);
+    
 }
 
 @end

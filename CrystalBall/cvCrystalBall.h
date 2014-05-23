@@ -8,13 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface cvCrystalBall : NSObject{
-    NSArray *_predictions;
-    
-}
+@interface cvCrystalBall : NSObject
 
-@property ( strong,nonatomic, readonly) NSArray *predictions;
+@property ( strong,nonatomic) NSArray *predictions;
 
 - (NSString*) randomPrediction;
-
+-(void)fillPredictions;
+-(NSArray *)getPredictions;
 @end
