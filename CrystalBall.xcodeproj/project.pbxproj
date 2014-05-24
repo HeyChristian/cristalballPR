@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		86799936192F0D460070DFFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86799935192F0D460070DFFF /* SystemConfiguration.framework */; };
-		86799938192F0D4F0070DFFF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86799937192F0D4F0070DFFF /* StoreKit.framework */; };
 		8679993A192F0D580070DFFF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86799939192F0D580070DFFF /* Security.framework */; };
 		8679993C192F0D610070DFFF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8679993B192F0D610070DFFF /* QuartzCore.framework */; };
 		8679993E192F0D6B0070DFFF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8679993D192F0D6B0070DFFF /* MobileCoreServices.framework */; };
@@ -22,6 +21,10 @@
 		86799953192F0ED00070DFFF /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86799951192F0ED00070DFFF /* Model.xcdatamodeld */; };
 		86799957192F17320070DFFF /* SyncTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 86799956192F17320070DFFF /* SyncTool.m */; };
 		8679995B192F17DB0070DFFF /* EntityPhrases.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679995A192F17DB0070DFFF /* EntityPhrases.m */; };
+		8679995E192FC9B70070DFFF /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679995D192FC9B70070DFFF /* SettingTableViewController.m */; };
+		86799965192FD12D0070DFFF /* appConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86799964192FD12D0070DFFF /* appConfig.plist */; };
+		86799969192FD1F40070DFFF /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 86799968192FD1F40070DFFF /* Settings.m */; };
+		8679996F193017D00070DFFF /* EntityAppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679996E193017D00070DFFF /* EntityAppConfig.m */; };
 		AA3F0EA1192E5B8B0042186D /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3F0EA0192E5B8B0042186D /* iAd.framework */; };
 		AA42605A190CBF18006C4E5B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA426059190CBF18006C4E5B /* Foundation.framework */; };
 		AA42605C190CBF18006C4E5B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA42605B190CBF18006C4E5B /* CoreGraphics.framework */; };
@@ -54,7 +57,6 @@
 
 /* Begin PBXFileReference section */
 		86799935192F0D460070DFFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		86799937192F0D4F0070DFFF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		86799939192F0D580070DFFF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8679993B192F0D610070DFFF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8679993D192F0D6B0070DFFF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -72,6 +74,13 @@
 		86799956192F17320070DFFF /* SyncTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncTool.m; sourceTree = "<group>"; };
 		86799959192F17DB0070DFFF /* EntityPhrases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityPhrases.h; sourceTree = "<group>"; };
 		8679995A192F17DB0070DFFF /* EntityPhrases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityPhrases.m; sourceTree = "<group>"; };
+		8679995C192FC9B70070DFFF /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
+		8679995D192FC9B70070DFFF /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
+		86799964192FD12D0070DFFF /* appConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appConfig.plist; sourceTree = SOURCE_ROOT; };
+		86799967192FD1F40070DFFF /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		86799968192FD1F40070DFFF /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		8679996D193017D00070DFFF /* EntityAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityAppConfig.h; sourceTree = "<group>"; };
+		8679996E193017D00070DFFF /* EntityAppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityAppConfig.m; sourceTree = "<group>"; };
 		AA3F0EA0192E5B8B0042186D /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		AA426056190CBF18006C4E5B /* CrystalBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrystalBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA426059190CBF18006C4E5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,7 +122,6 @@
 				8679993E192F0D6B0070DFFF /* MobileCoreServices.framework in Frameworks */,
 				8679993C192F0D610070DFFF /* QuartzCore.framework in Frameworks */,
 				8679993A192F0D580070DFFF /* Security.framework in Frameworks */,
-				86799938192F0D4F0070DFFF /* StoreKit.framework in Frameworks */,
 				86799936192F0D460070DFFF /* SystemConfiguration.framework in Frameworks */,
 				AA3F0EA1192E5B8B0042186D /* iAd.framework in Frameworks */,
 				AA42605C190CBF18006C4E5B /* CoreGraphics.framework in Frameworks */,
@@ -147,10 +155,23 @@
 		86799958192F17A60070DFFF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8679996D193017D00070DFFF /* EntityAppConfig.h */,
+				8679996E193017D00070DFFF /* EntityAppConfig.m */,
 				86799959192F17DB0070DFFF /* EntityPhrases.h */,
 				8679995A192F17DB0070DFFF /* EntityPhrases.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		86799966192FD1D10070DFFF /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				8679995C192FC9B70070DFFF /* SettingTableViewController.h */,
+				8679995D192FC9B70070DFFF /* SettingTableViewController.m */,
+				86799967192FD1F40070DFFF /* Settings.h */,
+				86799968192FD1F40070DFFF /* Settings.m */,
+			);
+			name = settings;
 			sourceTree = "<group>";
 		};
 		AA42604D190CBF18006C4E5B = {
@@ -187,7 +208,6 @@
 				8679993D192F0D6B0070DFFF /* MobileCoreServices.framework */,
 				8679993B192F0D610070DFFF /* QuartzCore.framework */,
 				86799939192F0D580070DFFF /* Security.framework */,
-				86799937192F0D4F0070DFFF /* StoreKit.framework */,
 				86799935192F0D460070DFFF /* SystemConfiguration.framework */,
 				AA3F0EA0192E5B8B0042186D /* iAd.framework */,
 				AA426093190DE14A006C4E5B /* AudioToolbox.framework */,
@@ -202,15 +222,15 @@
 		AA42605F190CBF18006C4E5B /* CrystalBall */ = {
 			isa = PBXGroup;
 			children = (
-				86799958192F17A60070DFFF /* Model */,
-				86799954192F17120070DFFF /* IE */,
-				AA426091190DE0FB006C4E5B /* crystal_ball.mp3 */,
+				86799966192FD1D10070DFFF /* settings */,
 				AA42606E190CBF18006C4E5B /* cvViewController.h */,
 				AA42606F190CBF18006C4E5B /* cvViewController.m */,
-				AA426071190CBF18006C4E5B /* Images.xcassets */,
-				AA426060190CBF18006C4E5B /* Supporting Files */,
 				AA42608E190CF0A7006C4E5B /* cvCrystalBall.h */,
 				AA42608F190CF0A7006C4E5B /* cvCrystalBall.m */,
+				86799958192F17A60070DFFF /* Model */,
+				86799954192F17120070DFFF /* IE */,
+				AA426071190CBF18006C4E5B /* Images.xcassets */,
+				AA426060190CBF18006C4E5B /* Supporting Files */,
 			);
 			path = CrystalBall;
 			sourceTree = "<group>";
@@ -218,6 +238,8 @@
 		AA426060190CBF18006C4E5B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				86799964192FD12D0070DFFF /* appConfig.plist */,
+				AA426091190DE0FB006C4E5B /* crystal_ball.mp3 */,
 				AA426068190CBF18006C4E5B /* cvAppDelegate.h */,
 				AA426069190CBF18006C4E5B /* cvAppDelegate.m */,
 				AA426061190CBF18006C4E5B /* CrystalBall-Info.plist */,
@@ -298,6 +320,11 @@
 				TargetAttributes = {
 					AA426055190CBF18006C4E5B = {
 						DevelopmentTeam = YCPPE5ZM94;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					AA426076190CBF18006C4E5B = {
 						TestTargetID = AA426055190CBF18006C4E5B;
@@ -331,6 +358,7 @@
 				AA426072190CBF18006C4E5B /* Images.xcassets in Resources */,
 				AA426064190CBF18006C4E5B /* InfoPlist.strings in Resources */,
 				AA426092190DE0FB006C4E5B /* crystal_ball.mp3 in Resources */,
+				86799965192FD12D0070DFFF /* appConfig.plist in Resources */,
 				AA42606D190CBF18006C4E5B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,9 +379,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				86799950192F0E090070DFFF /* CoreDataStack.m in Sources */,
+				8679996F193017D00070DFFF /* EntityAppConfig.m in Sources */,
 				AA426090190CF0A7006C4E5B /* cvCrystalBall.m in Sources */,
+				86799969192FD1F40070DFFF /* Settings.m in Sources */,
 				AA426066190CBF18006C4E5B /* main.m in Sources */,
 				AA426070190CBF18006C4E5B /* cvViewController.m in Sources */,
+				8679995E192FC9B70070DFFF /* SettingTableViewController.m in Sources */,
 				AA42606A190CBF18006C4E5B /* cvAppDelegate.m in Sources */,
 				8679995B192F17DB0070DFFF /* EntityPhrases.m in Sources */,
 				86799957192F17320070DFFF /* SyncTool.m in Sources */,
@@ -483,7 +514,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Christian Vazquez (HJ5QEV8KJN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Christian Vazquez (HJ5QEV8KJN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Christian Vazquez (HJ5QEV8KJN)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -495,7 +526,7 @@
 				GCC_PREFIX_HEADER = "CrystalBall/CrystalBall-Prefix.pch";
 				INFOPLIST_FILE = "CrystalBall/CrystalBall-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "B5CB9E03-508E-42B3-B1A3-B3641732402F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -505,8 +536,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Christian Vazquez (HJ5QEV8KJN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Christian Vazquez (HJ5QEV8KJN)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Christian Vazquez (YCPPE5ZM94)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Christian Vazquez (YCPPE5ZM94)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -516,7 +547,7 @@
 				GCC_PREFIX_HEADER = "CrystalBall/CrystalBall-Prefix.pch";
 				INFOPLIST_FILE = "CrystalBall/CrystalBall-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "EB934F68-46C4-4AA4-B238-1BDF29B3186F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

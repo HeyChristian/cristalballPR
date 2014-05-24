@@ -12,14 +12,20 @@
 #import <AudioUnit/AudioUnit.h>
 #import <iAd/iAd.h>
 #import "SyncTool.h"
+#import "SettingTableViewController.h"
 
-@interface cvViewController ()
+@interface cvViewController ()<ADBannerViewDelegate>
 
 @end
+
+
 
 @implementation cvViewController{
     SystemSoundID soundEffect;
 }
+
+
+
 
 - (void)viewDidLoad
 {
@@ -63,9 +69,15 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+   // [self.navigationController.navigationBar setHidden:YES];
     
-    ADBannerView *adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, 320, 50)];
-    [self.view addSubview:adView];
+    SyncTool *tool = [[SyncTool alloc] init];
+    [tool DownloadPhrases];
+    
+    
+    self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, 320, 50)];
+    // [self.adView setHidden:YES];
+    [self.view addSubview:self.adView];
     
    // SyncTool *sync = [[SyncTool alloc] init];
     //[sync DownloadPhrases];
@@ -73,12 +85,14 @@
     [self.crystalBall fillPredictions];
     
 }
+#pragma mark ADBannerViewDelegate
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    [banner setHidden:NO];
+   // [self.view addSubview:banner];
+    
 }
+
 
 - (IBAction)buttonPressed {
     
@@ -96,6 +110,15 @@
     
     }];
 
+}
+
+- (IBAction)showSettingsView:(id)sender {
+    
+    
+      [self performSegueWithIdentifier:@"settings" sender:self];
+  // SettingTableViewController *modalViewController=[[SettingTableViewController alloc] init];
+   //[self presentViewController:modalViewController animated:YES completion:nil];
+    
 }
 
 

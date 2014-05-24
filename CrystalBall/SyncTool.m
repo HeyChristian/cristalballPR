@@ -9,13 +9,18 @@
 #import "SyncTool.h"
 #import <Parse/Parse.h>
 #import "CoreDataStack.h"
-
+#import "Settings.h"
 
 @implementation SyncTool
 
 
 - (void) DownloadPhrases{
     //Download all pharses and sync into CoreData
+    Settings *config =[[Settings alloc] init];
+    
+    
+    
+    if(config.downloadNewContent==1){
     
    CoreDataStack *coreDataStack = [CoreDataStack defaultStack];
    // NSString *uuid;
@@ -31,14 +36,14 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Phrases"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+          //  NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
             
             EntityPhrases *phrase;
             for (PFObject *object in objects) {
                
                self.needUpdate=NO;
                self.exist=NO;
-               NSLog(@"%@ - %@",[object objectForKey:@"uuid"],[object objectForKey:@"needUpdate"]);
+              // NSLog(@"%@ - %@",[object objectForKey:@"uuid"],[object objectForKey:@"needUpdate"]);
              
               NSString *uuid = [[NSString alloc] initWithString:[object objectForKey:@"uuid"]];
                 
@@ -69,19 +74,21 @@
                 self.countPhrases+=1;
                 
                 [coreDataStack saveContext];
-               // NSLog(@"Save Success: %@",phrase.phrase);
             }
             
            
-            NSLog(@"NEW: %d",self.newPhrases);
-            NSLog(@"UPD: %d",self.updatePhrases);
+           // NSLog(@"NEW: %d",self.newPhrases);
+           // NSLog(@"UPD: %d",self.updatePhrases);
             
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
+    }
+    else{
+        NSLog(@"Dont use additional content");
+    }
 }
 
 - (EntityPhrases *) getPhraseIfExist:(NSString *)uuid withManagedObjectContext:(NSManagedObjectContext*)context{
@@ -115,10 +122,14 @@
     CoreDataStack *coreDataStack = [CoreDataStack defaultStack];
     
     
+    Settings *config = [[Settings alloc] init];
+    
+    
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"Phrases" inManagedObjectContext:coreDataStack.managedObjectContext]];
     [request setPredicate:[NSPredicate predicateWithFormat:@"status == %d", 1]];
-    
+    [request setPredicate:[NSPredicate predicateWithFormat:@"isMature == 0 or isMature == %d",config.useMatureContent]];
+ 
     NSArray *results = [coreDataStack.managedObjectContext executeFetchRequest:request error:nil];
     
     NSMutableArray *phrases=[[NSMutableArray alloc] init];

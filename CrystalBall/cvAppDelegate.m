@@ -9,6 +9,7 @@
 #import "cvAppDelegate.h"
 #import <Parse/Parse.h>
 #import "SyncTool.h"
+#import "Settings.h"
 
 @implementation cvAppDelegate
 
@@ -18,6 +19,8 @@
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
    
+    application.applicationIconBadgeNumber = 0;
+    
     /*
     //Registration Push Notifications
     [application registerForRemoteNotificationTypes:
@@ -33,13 +36,11 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     
-    
-    
-    
+  
     SyncTool *tool = [[SyncTool alloc] init];
     [tool DownloadPhrases];
-    
-     [NSThread sleepForTimeInterval:5.0];
+        
+    [NSThread sleepForTimeInterval:5.0];
     return YES;
 }
 							
@@ -72,22 +73,24 @@
 
 
 
-- (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
-    // Store the deviceToken in the current installation and save it to Parse.
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:newDeviceToken];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    currentInstallation.channels = @[@"global"];
     [currentInstallation saveInBackground];
 }
 
-- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    if (error.code == 3010) {
+        NSLog(@"Push notifications are not supported in the iOS Simulator.");
+    } else {
+        // show some alert or otherwise handle the failure to register.
+        NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
+    }
 }
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *) error
-{
-    NSLog(@"Error:  %@", error);
-    
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
 @end

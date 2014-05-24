@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 
 @class cvCrystalBall;
 
@@ -15,9 +16,12 @@
 @property(strong,nonatomic) cvCrystalBall *crystalBall;
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
+@property(strong,nonatomic)ADBannerView *adView;
+
 - (IBAction)buttonPressed;
 
 -(void) makePrediction;
 
+- (IBAction)showSettingsView:(id)sender;
 
 @end

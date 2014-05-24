@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AppConfig" representedClassName="EntityAppConfig" syncable="YES">
+        <attribute name="isMature" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="newContent" optional="YES" attributeType="Integer 16" syncable="YES"/>
+    </entity>
     <entity name="Phrases" representedClassName="EntityPhrases" syncable="YES">
         <attribute name="isMature" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="phrase" optional="YES" attributeType="String" syncable="YES"/>
@@ -9,5 +13,6 @@
     </entity>
     <elements>
         <element name="Phrases" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="AppConfig" positionX="-54" positionY="27" width="128" height="73"/>
     </elements>
 </model>
