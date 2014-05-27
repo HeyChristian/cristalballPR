@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "SyncTool.h"
 #import "Settings.h"
+#import "ASReviewPopup.h"
 
 @implementation cvAppDelegate
 
@@ -63,7 +64,23 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    
+    SyncTool *tool = [[SyncTool alloc] init];
+    [tool DownloadPhrases];
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    // Show the popup for every major update of the app
+    [[ASReviewPopup sharedPopup] setPopupFrequency:ASReviewPopupFrequencyMajorVersion];     // You can set this to ASReviewPopupFrequencyAlways to force the alert to always show when testing
+    
+    // Set the number of days to wait before showing the alert
+    [[ASReviewPopup sharedPopup] setNumberOfDaysBeforeShowingPopup:2];
+    
+    // Set the App Store URL -
+    [[ASReviewPopup sharedPopup] setAppStoreURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=882117059"]];
+    
+    // Call to trigger
+    [[ASReviewPopup sharedPopup] showAlertReminderAfterDaysHaveElapsed];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

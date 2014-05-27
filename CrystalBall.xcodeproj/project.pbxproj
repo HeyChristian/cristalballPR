@@ -25,6 +25,7 @@
 		86799965192FD12D0070DFFF /* appConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86799964192FD12D0070DFFF /* appConfig.plist */; };
 		86799969192FD1F40070DFFF /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 86799968192FD1F40070DFFF /* Settings.m */; };
 		8679996F193017D00070DFFF /* EntityAppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 8679996E193017D00070DFFF /* EntityAppConfig.m */; };
+		868CDE401935460F006281EB /* ASReviewPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 868CDE3F1935460F006281EB /* ASReviewPopup.m */; };
 		AA3F0EA1192E5B8B0042186D /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3F0EA0192E5B8B0042186D /* iAd.framework */; };
 		AA42605A190CBF18006C4E5B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA426059190CBF18006C4E5B /* Foundation.framework */; };
 		AA42605C190CBF18006C4E5B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA42605B190CBF18006C4E5B /* CoreGraphics.framework */; };
@@ -81,6 +82,8 @@
 		86799968192FD1F40070DFFF /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		8679996D193017D00070DFFF /* EntityAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityAppConfig.h; sourceTree = "<group>"; };
 		8679996E193017D00070DFFF /* EntityAppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityAppConfig.m; sourceTree = "<group>"; };
+		868CDE3E1935460F006281EB /* ASReviewPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASReviewPopup.h; sourceTree = "<group>"; };
+		868CDE3F1935460F006281EB /* ASReviewPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASReviewPopup.m; sourceTree = "<group>"; };
 		AA3F0EA0192E5B8B0042186D /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		AA426056190CBF18006C4E5B /* CrystalBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrystalBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA426059190CBF18006C4E5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -174,6 +177,23 @@
 			name = settings;
 			sourceTree = "<group>";
 		};
+		868CDE3C193545DC006281EB /* ExternalClasses */ = {
+			isa = PBXGroup;
+			children = (
+				868CDE3D193545EE006281EB /* ASReviewPopup */,
+			);
+			name = ExternalClasses;
+			sourceTree = "<group>";
+		};
+		868CDE3D193545EE006281EB /* ASReviewPopup */ = {
+			isa = PBXGroup;
+			children = (
+				868CDE3E1935460F006281EB /* ASReviewPopup.h */,
+				868CDE3F1935460F006281EB /* ASReviewPopup.m */,
+			);
+			name = ASReviewPopup;
+			sourceTree = "<group>";
+		};
 		AA42604D190CBF18006C4E5B = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +242,7 @@
 		AA42605F190CBF18006C4E5B /* CrystalBall */ = {
 			isa = PBXGroup;
 			children = (
+				868CDE3C193545DC006281EB /* ExternalClasses */,
 				86799966192FD1D10070DFFF /* settings */,
 				AA42606E190CBF18006C4E5B /* cvViewController.h */,
 				AA42606F190CBF18006C4E5B /* cvViewController.m */,
@@ -378,6 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				868CDE401935460F006281EB /* ASReviewPopup.m in Sources */,
 				86799950192F0E090070DFFF /* CoreDataStack.m in Sources */,
 				8679996F193017D00070DFFF /* EntityAppConfig.m in Sources */,
 				AA426090190CF0A7006C4E5B /* cvCrystalBall.m in Sources */,
