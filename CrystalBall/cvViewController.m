@@ -42,7 +42,7 @@
     self.predictLabel.text = nil;
     
     NSMutableArray *animationImages = [[NSMutableArray alloc] init];
-    NSString *imageName = [[NSString alloc] init];
+   NSString *imageName = [[NSString alloc] init];
    int i=1;
    while (i < 61){
         
