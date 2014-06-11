@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		863D5A3B1948E8ED0030E289 /* SpeechKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 863D5A3A1948E8ED0030E289 /* SpeechKit.m */; };
 		86799936192F0D460070DFFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86799935192F0D460070DFFF /* SystemConfiguration.framework */; };
 		8679993A192F0D580070DFFF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86799939192F0D580070DFFF /* Security.framework */; };
 		8679993C192F0D610070DFFF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8679993B192F0D610070DFFF /* QuartzCore.framework */; };
@@ -57,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		863D5A391948E8ED0030E289 /* SpeechKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechKit.h; sourceTree = "<group>"; };
+		863D5A3A1948E8ED0030E289 /* SpeechKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechKit.m; sourceTree = "<group>"; };
 		86799935192F0D460070DFFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		86799939192F0D580070DFFF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8679993B192F0D610070DFFF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -181,6 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				868CDE3D193545EE006281EB /* ASReviewPopup */,
+				863D5A391948E8ED0030E289 /* SpeechKit.h */,
+				863D5A3A1948E8ED0030E289 /* SpeechKit.m */,
 			);
 			name = ExternalClasses;
 			sourceTree = "<group>";
@@ -402,6 +407,7 @@
 				868CDE401935460F006281EB /* ASReviewPopup.m in Sources */,
 				86799950192F0E090070DFFF /* CoreDataStack.m in Sources */,
 				8679996F193017D00070DFFF /* EntityAppConfig.m in Sources */,
+				863D5A3B1948E8ED0030E289 /* SpeechKit.m in Sources */,
 				AA426090190CF0A7006C4E5B /* cvCrystalBall.m in Sources */,
 				86799969192FD1F40070DFFF /* Settings.m in Sources */,
 				AA426066190CBF18006C4E5B /* main.m in Sources */,
@@ -547,9 +553,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrystalBall/CrystalBall-Prefix.pch";
 				INFOPLIST_FILE = "CrystalBall/CrystalBall-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7EE32D6F-A16B-47AB-A859-836486B3A7B9";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -569,9 +576,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrystalBall/CrystalBall-Prefix.pch";
 				INFOPLIST_FILE = "CrystalBall/CrystalBall-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7EE32D6F-A16B-47AB-A859-836486B3A7B9";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

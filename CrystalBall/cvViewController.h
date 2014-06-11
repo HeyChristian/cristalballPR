@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
 
+@import AVFoundation;
+
 @class cvCrystalBall;
 
 @interface cvViewController : UIViewController

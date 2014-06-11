@@ -41,7 +41,7 @@
     SyncTool *tool = [[SyncTool alloc] init];
     [tool DownloadPhrases];
         
-    [NSThread sleepForTimeInterval:5.0];
+    [NSThread sleepForTimeInterval:3.0];
     return YES;
 }
 							

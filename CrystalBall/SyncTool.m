@@ -82,12 +82,12 @@
             
         } else {
             // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+           // NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
     }
     else{
-        NSLog(@"Dont use additional content");
+      //  NSLog(@"Dont use additional content");
     }
 }
 

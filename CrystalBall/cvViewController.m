@@ -14,7 +14,10 @@
 #import "SyncTool.h"
 #import "SettingTableViewController.h"
 
-@interface cvViewController ()<ADBannerViewDelegate>
+@interface cvViewController ()<ADBannerViewDelegate,AVSpeechSynthesizerDelegate>
+
+@property (readwrite, nonatomic, copy) NSString *utteranceString;
+@property (readwrite, nonatomic, strong) AVSpeechSynthesizer *speechSynthesizer;
 
 @end
 
@@ -26,17 +29,26 @@
 
 
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    //Speech Delegate
+    //self.utteranceString = SpeechUtterancesByLanguage[Spanish]; //randomLanguage
+    self.speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
+    self.speechSynthesizer.delegate = self;
+    
+    
+    self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, 320, 50)];
+    self.adView.delegate = self;
+    self.adView.hidden = YES;
+    [self.view addSubview:self.adView];
+    
+    
+    self.crystalBall = [[cvCrystalBall alloc] init];
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"crystal_ball" ofType:@"mp3"];
     NSURL *soundURL = [NSURL fileURLWithPath:soundPath];
     AudioServicesCreateSystemSoundID(CFBridgingRetain(soundURL),&soundEffect);
-    self.crystalBall = [[cvCrystalBall alloc] init];
-    
-    
 
     
     self.predictLabel.text = nil;
@@ -74,23 +86,21 @@
     SyncTool *tool = [[SyncTool alloc] init];
     [tool DownloadPhrases];
     
-    
-    self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, 320, 50)];
-    // [self.adView setHidden:YES];
-    [self.view addSubview:self.adView];
-    
-   // SyncTool *sync = [[SyncTool alloc] init];
-    //[sync DownloadPhrases];
+
+
     
     [self.crystalBall fillPredictions];
     
 }
 #pragma mark ADBannerViewDelegate
 
+
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    [banner setHidden:NO];
-   // [self.view addSubview:banner];
-    
+    self.adView.hidden = NO;
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    self.adView.hidden = YES;
 }
 
 
@@ -102,23 +112,54 @@
 #pragma mark - Prediction
 -(void) makePrediction{
     [self.backgroundImageView startAnimating];
-    self.predictLabel.text = [self.crystalBall randomPrediction];
+    
+    self.utteranceString =[self.crystalBall randomPrediction];
+    
+    
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"crystal_ball" ofType:@"mp3"];
+    NSURL *soundURL = [NSURL fileURLWithPath:soundPath];
+    AudioServicesCreateSystemSoundID(CFBridgingRetain(soundURL),&soundEffect);
     AudioServicesPlaySystemSound(soundEffect);
+    
     
     [UIView animateWithDuration:6.0f animations:^{
         self.predictLabel.alpha = 1.0f;
-    
+        
     }];
+    self.predictLabel.attributedText = [[NSAttributedString alloc] initWithString:self.utteranceString];
+    
+  //  NSMutableString *mutableString = [self.utteranceString mutableCopy];
+    //CFStringTransform((__bridge CFMutableStringRef)mutableString, NULL, kCFStringTransformToLatin, NO);
+  //  CFStringTransform((__bridge CFMutableStringRef)mutableString, NULL, kCFStringTransformStripCombiningMarks, NO);
+   // self.transliterationLabel.text = mutableString;
+    
+    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.utteranceString];
+   // NSLog(@"BCP-47 Language Code: %@", BCP47LanguageCodeForString(utterance.speechString));
+    
+    #define MY_SPEECH_RATE  0.1666 //0.1666
+    #define MY_SPEECH_MPX  1.55 //1.55
+    
+    //es-MX
+    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"es-MX"]; //@"es-ES"];
+    utterance.pitchMultiplier = MY_SPEECH_MPX; //0.5f;
+    utterance.rate = MY_SPEECH_RATE;  //AVSpeechUtteranceMinimumSpeechRate;
+    utterance.preUtteranceDelay = 0.9f;
+    utterance.postUtteranceDelay = 0.9f;
+    
+    [self.speechSynthesizer speakUtterance:utterance];
+    
+    
+    
+
+    
+   // self.predictLabel.text = [self.crystalBall randomPrediction];
+    
+   
 
 }
 
 - (IBAction)showSettingsView:(id)sender {
-    
-    
       [self performSegueWithIdentifier:@"settings" sender:self];
-  // SettingTableViewController *modalViewController=[[SettingTableViewController alloc] init];
-   //[self presentViewController:modalViewController animated:YES completion:nil];
-    
 }
 
 
@@ -132,15 +173,11 @@
 
 
 -(void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    NSLog(@"Motion ended");
-    
+   // NSLog(@"Motion ended");
     if (motion == UIEventSubtypeMotionShake){
         [self makePrediction];
     }
     
-}
--(void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    NSLog(@"motion cancelled");
 }
 
 #pragma  mark - Touch Event
@@ -152,8 +189,44 @@
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
       [self makePrediction];
 }
--(void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"touch cancelled");
+
+
+#pragma mark - AVSpeechSynthesizerDelegate
+- (void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer
+willSpeakRangeOfSpeechString:(NSRange)characterRange
+                utterance:(AVSpeechUtterance *)utterance
+{
+    @try {
+   // NSLog(@"%@ %@", [self class], NSStringFromSelector(_cmd));
+    
+    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.utteranceString];
+    [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:characterRange];
+    self.predictLabel.attributedText = mutableAttributedString;
+
+    
+        
+    }
+    @catch (NSException * e) {
+      //  NSLog(@"Exception: %@", e);
+    }
+    
 }
+
+- (void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer
+  didStartSpeechUtterance:(AVSpeechUtterance *)utterance
+{
+  //  NSLog(@"%@ %@", [self class], NSStringFromSelector(_cmd));
+    
+    self.predictLabel.attributedText = [[NSAttributedString alloc] initWithString:self.utteranceString];
+}
+
+- (void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer
+ didFinishSpeechUtterance:(AVSpeechUtterance *)utterance
+{
+   // NSLog(@"%@ %@", [self class], NSStringFromSelector(_cmd));
+    
+    self.predictLabel.attributedText = [[NSAttributedString alloc] initWithString:self.utteranceString];
+}
+
 
 @end
